@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "strict": true /* Включаем максимальную строгость TS */,
+    "target": "ES2022" /* Современный стандарт JS на выходе */,
+    "module": "ESNext" /* Современные импорты/экспорты */,
+    "moduleResolution": "bundler" /* По умолчанию используем современный резолвер */,
+    "esModuleInterop": true /* Совместимость с CommonJS модулями */,
+    "skipLibCheck": true /* Пропускаем проверку типов в node_modules (ускоряет сборку) */,
+    "forceConsistentCasingInFileNames": true /* Защита от ошибок регистра в именах файлов */,
+    "isolatedModules": true /* Требуется для корректной работы сборщиков вроде Vite */,
+    "resolveJsonModule": true /* Позволяет импортировать .json файлы напрямую */
+  }
+}
