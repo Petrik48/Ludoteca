@@ -1,0 +1,16 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+    "jsx": "react-jsx",
+    "lib": ["DOM", "DOM.Iterable", "ES2022"],
+    "outDir": "./dist",
+    "declaration": true,
+    "types": ["vitest/globals"]
+  },
+  "references": [{ "path": "./tsconfig.node.json" }],
+  "include": ["src/**/*"]
+}
