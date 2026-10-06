@@ -120,9 +120,35 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
   Serializable: 'Serializable'
 });
 
+exports.Prisma.GameScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  type: 'type',
+  bggId: 'bggId',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.SortOrder = {
+  asc: 'asc',
+  desc: 'desc'
+};
+
+exports.Prisma.QueryMode = {
+  default: 'default',
+  insensitive: 'insensitive'
+};
+
+exports.Prisma.NullsOrder = {
+  first: 'first',
+  last: 'last'
+};
+exports.GameType = exports.$Enums.GameType = {
+  PNP: 'PNP',
+  PUBLISHED: 'PUBLISHED'
+};
 
 exports.Prisma.ModelName = {
-
+  Game: 'Game'
 };
 
 /**

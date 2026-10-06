@@ -93,9 +93,35 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
   Serializable: 'Serializable'
 });
 
+exports.Prisma.GameScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  type: 'type',
+  bggId: 'bggId',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.SortOrder = {
+  asc: 'asc',
+  desc: 'desc'
+};
+
+exports.Prisma.QueryMode = {
+  default: 'default',
+  insensitive: 'insensitive'
+};
+
+exports.Prisma.NullsOrder = {
+  first: 'first',
+  last: 'last'
+};
+exports.GameType = exports.$Enums.GameType = {
+  PNP: 'PNP',
+  PUBLISHED: 'PUBLISHED'
+};
 
 exports.Prisma.ModelName = {
-
+  Game: 'Game'
 };
 /**
  * Create the Client
@@ -105,14 +131,14 @@ const config = {
   "clientVersion": "7.8.0",
   "engineVersion": "3c6e192761c0362d496ed980de936e2f3cebcd3a",
   "activeProvider": "postgresql",
-  "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n  output   = \"../src/generated/client\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n}\n"
+  "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n  output   = \"../src/generated/client\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n}\n\n// --- ENUMS ---\nenum GameType {\n  PNP\n  PUBLISHED\n}\n\n// --- MODELS ---\nmodel Game {\n  id        String   @id @default(uuid())\n  name      String\n  type      GameType @default(PNP)\n  bggId     Int?\n  createdAt DateTime @default(now())\n}\n"
 }
 
-config.runtimeDataModel = JSON.parse("{\"models\":{},\"enums\":{},\"types\":{}}")
+config.runtimeDataModel = JSON.parse("{\"models\":{\"Game\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"type\",\"kind\":\"enum\",\"type\":\"GameType\"},{\"name\":\"bggId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
 defineDmmfProperty(exports.Prisma, config.runtimeDataModel)
 config.parameterizationSchema = {
-  strings: JSON.parse("[]"),
-  graph: "AAAA"
+  strings: JSON.parse("[\"where\",\"Game.findUnique\",\"Game.findUniqueOrThrow\",\"orderBy\",\"cursor\",\"Game.findFirst\",\"Game.findFirstOrThrow\",\"Game.findMany\",\"data\",\"Game.createOne\",\"Game.createMany\",\"Game.createManyAndReturn\",\"Game.updateOne\",\"Game.updateMany\",\"Game.updateManyAndReturn\",\"create\",\"update\",\"Game.upsertOne\",\"Game.deleteOne\",\"Game.deleteMany\",\"having\",\"_count\",\"_avg\",\"_sum\",\"_min\",\"_max\",\"Game.groupBy\",\"Game.aggregate\",\"AND\",\"OR\",\"NOT\",\"id\",\"name\",\"GameType\",\"type\",\"bggId\",\"createdAt\",\"equals\",\"in\",\"notIn\",\"lt\",\"lte\",\"gt\",\"gte\",\"not\",\"contains\",\"startsWith\",\"endsWith\",\"set\",\"increment\",\"decrement\",\"multiply\",\"divide\"]"),
+  graph: "NwsQCBwAACkAMB0AAAQAEB4AACkAMB8BAAAAASABACoAISIAACsiIiMCACwAISRAAC0AIQEAAAABACABAAAAAQAgCBwAACkAMB0AAAQAEB4AACkAMB8BACoAISABACoAISIAACsiIiMCACwAISRAAC0AIQEjAAAuACADAAAABAAgAwAABQAwBAAAAQAgAwAAAAQAIAMAAAUAMAQAAAEAIAMAAAAEACADAAAFADAEAAABACAFHwEAAAABIAEAAAABIgAAACICIwIAAAABJEAAAAABAQgAAAkAIAUfAQAAAAEgAQAAAAEiAAAAIgIjAgAAAAEkQAAAAAEBCAAACwAwAQgAAAsAMAUfAQA0ACEgAQA0ACEiAAA1IiIjAgA2ACEkQAA3ACECAAAAAQAgCAAADgAgBR8BADQAISABADQAISIAADUiIiMCADYAISRAADcAIQIAAAAEACAIAAAQACACAAAABAAgCAAAEAAgAwAAAAEAIA8AAAkAIBAAAA4AIAEAAAABACABAAAABAAgBhUAAC8AIBYAADAAIBcAADMAIBgAADIAIBkAADEAICMAAC4AIAgcAAAaADAdAAAXABAeAAAaADAfAQAbACEgAQAbACEiAAAcIiIjAgAdACEkQAAeACEDAAAABAAgAwAAFgAwFAAAFwAgAwAAAAQAIAMAAAUAMAQAAAEAIAgcAAAaADAdAAAXABAeAAAaADAfAQAbACEgAQAbACEiAAAcIiIjAgAdACEkQAAeACEOFQAAIAAgGAAAKAAgGQAAKAAgJQEAAAABJgEAAAAEJwEAAAAEKAEAAAABKQEAAAABKgEAAAABKwEAAAABLAEAJwAhLQEAAAABLgEAAAABLwEAAAABBxUAACAAIBgAACYAIBkAACYAICUAAAAiAiYAAAAiCCcAAAAiCCwAACUiIg0VAAAjACAWAAAkACAXAAAjACAYAAAjACAZAAAjACAlAgAAAAEmAgAAAAUnAgAAAAUoAgAAAAEpAgAAAAEqAgAAAAErAgAAAAEsAgAiACELFQAAIAAgGAAAIQAgGQAAIQAgJUAAAAABJkAAAAAEJ0AAAAAEKEAAAAABKUAAAAABKkAAAAABK0AAAAABLEAAHwAhCxUAACAAIBgAACEAIBkAACEAICVAAAAAASZAAAAABCdAAAAABChAAAAAASlAAAAAASpAAAAAAStAAAAAASxAAB8AIQglAgAAAAEmAgAAAAQnAgAAAAQoAgAAAAEpAgAAAAEqAgAAAAErAgAAAAEsAgAgACEIJUAAAAABJkAAAAAEJ0AAAAAEKEAAAAABKUAAAAABKkAAAAABK0AAAAABLEAAIQAhDRUAACMAIBYAACQAIBcAACMAIBgAACMAIBkAACMAICUCAAAAASYCAAAABScCAAAABSgCAAAAASkCAAAAASoCAAAAASsCAAAAASwCACIAIQglAgAAAAEmAgAAAAUnAgAAAAUoAgAAAAEpAgAAAAEqAgAAAAErAgAAAAEsAgAjACEIJQgAAAABJggAAAAFJwgAAAAFKAgAAAABKQgAAAABKggAAAABKwgAAAABLAgAJAAhBxUAACAAIBgAACYAIBkAACYAICUAAAAiAiYAAAAiCCcAAAAiCCwAACUiIgQlAAAAIgImAAAAIggnAAAAIggsAAAmIiIOFQAAIAAgGAAAKAAgGQAAKAAgJQEAAAABJgEAAAAEJwEAAAAEKAEAAAABKQEAAAABKgEAAAABKwEAAAABLAEAJwAhLQEAAAABLgEAAAABLwEAAAABCyUBAAAAASYBAAAABCcBAAAABCgBAAAAASkBAAAAASoBAAAAASsBAAAAASwBACgAIS0BAAAAAS4BAAAAAS8BAAAAAQgcAAApADAdAAAEABAeAAApADAfAQAqACEgAQAqACEiAAArIiIjAgAsACEkQAAtACELJQEAAAABJgEAAAAEJwEAAAAEKAEAAAABKQEAAAABKgEAAAABKwEAAAABLAEAKAAhLQEAAAABLgEAAAABLwEAAAABBCUAAAAiAiYAAAAiCCcAAAAiCCwAACYiIgglAgAAAAEmAgAAAAUnAgAAAAUoAgAAAAEpAgAAAAEqAgAAAAErAgAAAAEsAgAjACEIJUAAAAABJkAAAAAEJ0AAAAAEKEAAAAABKUAAAAABKkAAAAABK0AAAAABLEAAIQAhAAAAAAAAATABAAAAAQEwAAAAIgIFMAIAAAABMQIAAAABMgIAAAABMwIAAAABNAIAAAABATBAAAAAAQAAAAAFFQAGFgAHFwAIGAAJGQAKAAAAAAAFFQAGFgAHFwAIGAAJGQAKAQIBAgMBBQYBBgcBBwgBCQoBCgwCCw0DDA8BDRECDhIEERMBEhQBExUCGhgFGxkL"
 }
 config.compilerWasm = {
       getRuntime: async () => require('./query_compiler_fast_bg.js'),
