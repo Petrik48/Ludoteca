@@ -6,3 +6,19 @@ generator client {
 datasource db {
   provider = "postgresql"
 }
+
+// --- ENUMS ---
+enum GameType {
+  PNP
+  PUBLISHED
+}
+
+// --- MODELS ---
+model Game {
+  id        String  @id @default(uuid())
+  name      String
+  type      GameType
+  bggId     Int?
+  createdAt DateTime @default(now()) @db.Timestamptz(3)
+  updatedAt DateTime @updatedAt @db.Timestamptz(3)
+}
