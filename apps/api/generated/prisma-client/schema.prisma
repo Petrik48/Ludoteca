@@ -1,6 +1,6 @@
 generator client {
   provider = "prisma-client-js"
-  output   = "../src/generated/client"
+  output   = "../generated/prisma-client"
 }
 
 datasource db {
@@ -17,7 +17,8 @@ enum GameType {
 model Game {
   id        String   @id @default(uuid())
   name      String
-  type      GameType @default(PNP)
+  type      GameType
   bggId     Int?
-  createdAt DateTime @default(now())
+  createdAt DateTime @default(now()) @db.Timestamptz(3)
+  updatedAt DateTime @updatedAt @db.Timestamptz(3)
 }

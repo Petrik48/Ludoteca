@@ -909,6 +909,7 @@ export namespace Prisma {
     type: $Enums.GameType | null
     bggId: number | null
     createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type GameMaxAggregateOutputType = {
@@ -917,6 +918,7 @@ export namespace Prisma {
     type: $Enums.GameType | null
     bggId: number | null
     createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type GameCountAggregateOutputType = {
@@ -925,6 +927,7 @@ export namespace Prisma {
     type: number
     bggId: number
     createdAt: number
+    updatedAt: number
     _all: number
   }
 
@@ -943,6 +946,7 @@ export namespace Prisma {
     type?: true
     bggId?: true
     createdAt?: true
+    updatedAt?: true
   }
 
   export type GameMaxAggregateInputType = {
@@ -951,6 +955,7 @@ export namespace Prisma {
     type?: true
     bggId?: true
     createdAt?: true
+    updatedAt?: true
   }
 
   export type GameCountAggregateInputType = {
@@ -959,6 +964,7 @@ export namespace Prisma {
     type?: true
     bggId?: true
     createdAt?: true
+    updatedAt?: true
     _all?: true
   }
 
@@ -1054,6 +1060,7 @@ export namespace Prisma {
     type: $Enums.GameType
     bggId: number | null
     createdAt: Date
+    updatedAt: Date
     _count: GameCountAggregateOutputType | null
     _avg: GameAvgAggregateOutputType | null
     _sum: GameSumAggregateOutputType | null
@@ -1081,6 +1088,7 @@ export namespace Prisma {
     type?: boolean
     bggId?: boolean
     createdAt?: boolean
+    updatedAt?: boolean
   }, ExtArgs["result"]["game"]>
 
   export type GameSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -1089,6 +1097,7 @@ export namespace Prisma {
     type?: boolean
     bggId?: boolean
     createdAt?: boolean
+    updatedAt?: boolean
   }, ExtArgs["result"]["game"]>
 
   export type GameSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -1097,6 +1106,7 @@ export namespace Prisma {
     type?: boolean
     bggId?: boolean
     createdAt?: boolean
+    updatedAt?: boolean
   }, ExtArgs["result"]["game"]>
 
   export type GameSelectScalar = {
@@ -1105,9 +1115,10 @@ export namespace Prisma {
     type?: boolean
     bggId?: boolean
     createdAt?: boolean
+    updatedAt?: boolean
   }
 
-  export type GameOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "type" | "bggId" | "createdAt", ExtArgs["result"]["game"]>
+  export type GameOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "type" | "bggId" | "createdAt" | "updatedAt", ExtArgs["result"]["game"]>
 
   export type $GamePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Game"
@@ -1118,6 +1129,7 @@ export namespace Prisma {
       type: $Enums.GameType
       bggId: number | null
       createdAt: Date
+      updatedAt: Date
     }, ExtArgs["result"]["game"]>
     composites: {}
   }
@@ -1546,6 +1558,7 @@ export namespace Prisma {
     readonly type: FieldRef<"Game", 'GameType'>
     readonly bggId: FieldRef<"Game", 'Int'>
     readonly createdAt: FieldRef<"Game", 'DateTime'>
+    readonly updatedAt: FieldRef<"Game", 'DateTime'>
   }
     
 
@@ -1936,7 +1949,8 @@ export namespace Prisma {
     name: 'name',
     type: 'type',
     bggId: 'bggId',
-    createdAt: 'createdAt'
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
   };
 
   export type GameScalarFieldEnum = (typeof GameScalarFieldEnum)[keyof typeof GameScalarFieldEnum]
@@ -2053,6 +2067,7 @@ export namespace Prisma {
     type?: EnumGameTypeFilter<"Game"> | $Enums.GameType
     bggId?: IntNullableFilter<"Game"> | number | null
     createdAt?: DateTimeFilter<"Game"> | Date | string
+    updatedAt?: DateTimeFilter<"Game"> | Date | string
   }
 
   export type GameOrderByWithRelationInput = {
@@ -2061,6 +2076,7 @@ export namespace Prisma {
     type?: SortOrder
     bggId?: SortOrderInput | SortOrder
     createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type GameWhereUniqueInput = Prisma.AtLeast<{
@@ -2072,6 +2088,7 @@ export namespace Prisma {
     type?: EnumGameTypeFilter<"Game"> | $Enums.GameType
     bggId?: IntNullableFilter<"Game"> | number | null
     createdAt?: DateTimeFilter<"Game"> | Date | string
+    updatedAt?: DateTimeFilter<"Game"> | Date | string
   }, "id">
 
   export type GameOrderByWithAggregationInput = {
@@ -2080,6 +2097,7 @@ export namespace Prisma {
     type?: SortOrder
     bggId?: SortOrderInput | SortOrder
     createdAt?: SortOrder
+    updatedAt?: SortOrder
     _count?: GameCountOrderByAggregateInput
     _avg?: GameAvgOrderByAggregateInput
     _max?: GameMaxOrderByAggregateInput
@@ -2096,22 +2114,25 @@ export namespace Prisma {
     type?: EnumGameTypeWithAggregatesFilter<"Game"> | $Enums.GameType
     bggId?: IntNullableWithAggregatesFilter<"Game"> | number | null
     createdAt?: DateTimeWithAggregatesFilter<"Game"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Game"> | Date | string
   }
 
   export type GameCreateInput = {
     id?: string
     name: string
-    type?: $Enums.GameType
+    type: $Enums.GameType
     bggId?: number | null
     createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type GameUncheckedCreateInput = {
     id?: string
     name: string
-    type?: $Enums.GameType
+    type: $Enums.GameType
     bggId?: number | null
     createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type GameUpdateInput = {
@@ -2120,6 +2141,7 @@ export namespace Prisma {
     type?: EnumGameTypeFieldUpdateOperationsInput | $Enums.GameType
     bggId?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type GameUncheckedUpdateInput = {
@@ -2128,14 +2150,16 @@ export namespace Prisma {
     type?: EnumGameTypeFieldUpdateOperationsInput | $Enums.GameType
     bggId?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type GameCreateManyInput = {
     id?: string
     name: string
-    type?: $Enums.GameType
+    type: $Enums.GameType
     bggId?: number | null
     createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type GameUpdateManyMutationInput = {
@@ -2144,6 +2168,7 @@ export namespace Prisma {
     type?: EnumGameTypeFieldUpdateOperationsInput | $Enums.GameType
     bggId?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type GameUncheckedUpdateManyInput = {
@@ -2152,6 +2177,7 @@ export namespace Prisma {
     type?: EnumGameTypeFieldUpdateOperationsInput | $Enums.GameType
     bggId?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -2209,6 +2235,7 @@ export namespace Prisma {
     type?: SortOrder
     bggId?: SortOrder
     createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type GameAvgOrderByAggregateInput = {
@@ -2221,6 +2248,7 @@ export namespace Prisma {
     type?: SortOrder
     bggId?: SortOrder
     createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type GameMinOrderByAggregateInput = {
@@ -2229,6 +2257,7 @@ export namespace Prisma {
     type?: SortOrder
     bggId?: SortOrder
     createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type GameSumOrderByAggregateInput = {
