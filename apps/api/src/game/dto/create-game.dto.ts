@@ -1,5 +1,5 @@
 import { IsEnum, IsInt, IsNotEmpty, IsOptional, IsString, MaxLength } from 'class-validator';
-import { GameType } from '../../generated/client';
+import { GameType } from '../../../generated/prisma-client';
 
 export class CreateGameDto {
   @IsString()

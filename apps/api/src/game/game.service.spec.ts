@@ -1,7 +1,7 @@
 import { GameService } from './game.service';
 import { Test, TestingModule } from '@nestjs/testing';
 import { PrismaService } from '../prisma/prisma.service';
-import { GameType } from '../generated/client';
+import { GameType } from '../../generated/prisma-client';
 import { NotFoundException } from '@nestjs/common';
 
 describe('GameService', () => {

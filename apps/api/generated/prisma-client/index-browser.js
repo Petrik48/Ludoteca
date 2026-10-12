@@ -125,7 +125,8 @@ exports.Prisma.GameScalarFieldEnum = {
   name: 'name',
   type: 'type',
   bggId: 'bggId',
-  createdAt: 'createdAt'
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.SortOrder = {
