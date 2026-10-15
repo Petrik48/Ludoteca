@@ -6,6 +6,7 @@ import { useGames } from '../hooks/useGames';
 import { EmptyGames } from '../components/EmptyGames';
 import { AddGameDialog } from '../components/AddGameDialog.tsx';
 import { EditGameDialog } from '../components/EditGameDialog.tsx';
+import { DeleteGameConfirm } from '../components/DeleteGameConfirm.tsx';
 import { Game } from '../types.ts';
 
 export default function GamesLibraryPage() {
@@ -13,13 +14,14 @@ export default function GamesLibraryPage() {
 
   const [isCreateOpen, setIsCreateOpen] = useState(false);
   const [editingGame, setEditingGame] = useState<Game | null>(null);
+  const [deletingGame, setDeleteGame] = useState<Game | null>(null);
 
   const handleEdit = (game: Game) => {
     setEditingGame(game);
   };
 
   const handleDelete = (game: Game) => {
-    console.log('delete', game.id);
+    setDeleteGame(game);
   };
 
   if (isLoading) return <div>Loading...</div>;
@@ -57,6 +59,15 @@ export default function GamesLibraryPage() {
             if (!open) setEditingGame(null);
           }}
           game={editingGame!}
+        />
+      )}
+      {deletingGame && (
+        <DeleteGameConfirm
+          open
+          onOpenChange={(open) => {
+            if (!open) setDeleteGame(null);
+          }}
+          game={deletingGame!}
         />
       )}
     </div>

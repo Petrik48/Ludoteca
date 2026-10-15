@@ -9,3 +9,4 @@ export * from './ui/separator';
 export * from './ui/table';
 export * from './ui/toggle';
 export * from './ui/toggle-group';
+export * from './ui/alert-dialog';

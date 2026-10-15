@@ -1,0 +1,20 @@
+name: Deploy
+
+on:
+  workflow_dispatch:     # ручной запуск из GitHub
+  push:
+    branches: [main]     # автодеплой на пуш в main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          script: |
+            cd /opt/ludoteca
+            bash deploy.sh
