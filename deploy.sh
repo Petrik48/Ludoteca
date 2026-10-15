@@ -17,8 +17,11 @@ docker compose up -d --build
 
 echo "==> Running migrations..."
 sleep 5
-cd /opt/ludoteca
-DATABASE_URL="postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@localhost:5432/${POSTGRES_DB}" npx prisma migrate deploy --schema=apps/api/prisma/schema.prisma
+set -a
+source /opt/ludoteca/.env
+set +a
+export DATABASE_URL="postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@localhost:5432/${POSTGRES_DB}"
+pnpm --filter api exec prisma migrate deploy --schema=prisma/schema.prisma
 
 echo "==> Healthcheck..."
 sleep 3
