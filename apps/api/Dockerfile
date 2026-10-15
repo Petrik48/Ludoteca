@@ -34,7 +34,7 @@ COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 COPY apps/api/package.json apps/api/
 COPY packages/types/package.json packages/types/
 
-RUN pnpm install --frozen-lockfile --prod
+RUN pnpm install --frozen-lockfile
 
 COPY --from=build /app/apps/api/dist apps/api/dist
 COPY --from=build /app/apps/api/generated apps/api/generated
