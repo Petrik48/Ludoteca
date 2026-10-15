@@ -29,3 +29,12 @@ export async function updateGame(params: { id: string; data: CreateGameFormData 
   if (!response.ok) throw new Error('Failed to update game');
   return response.json();
 }
+
+export async function deleteGame(params: { id: string }): Promise<void> {
+  const { id } = params;
+  const response = await fetch(`${API_BASE}/games/${id}`, {
+    method: 'DELETE',
+    headers: { 'Content-Type': 'application/json' },
+  });
+  if (!response.ok) throw new Error('Failed to delete game');
+}
