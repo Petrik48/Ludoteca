@@ -20,7 +20,7 @@ COPY packages/types/ packages/types/
 COPY tsconfig.base.json ./
 
 # Генерируем Prisma client и собираем API
-RUN pnpm --filter api prisma generate
+RUN DATABASE_URL="postgresql://dummy:dummy@localhost:5432/dummy" pnpm --filter api prisma generate
 RUN pnpm --filter api build
 
 # ── Stage 2: production ─────────────────────────────────────
