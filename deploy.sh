@@ -21,7 +21,7 @@ set -a
 source /opt/ludoteca/.env
 set +a
 export DATABASE_URL="postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@localhost:5432/${POSTGRES_DB}"
-pnpm --filter api exec prisma migrate deploy --schema=prisma/schema.prisma
+pnpm --filter api exec -- prisma migrate deploy --schema=prisma/schema.prisma
 
 echo "==> Healthcheck..."
 sleep 3
