@@ -16,7 +16,9 @@ echo "==> Building and starting containers..."
 docker compose up -d --build
 
 echo "==> Running migrations..."
-docker compose exec -T api npx prisma migrate deploy --schema=apps/api/prisma/schema.prisma
+sleep 5
+cd /opt/ludoteca
+DATABASE_URL="postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@localhost:5432/${POSTGRES_DB}" npx prisma migrate deploy --schema=apps/api/prisma/schema.prisma
 
 echo "==> Healthcheck..."
 sleep 3
