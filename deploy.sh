@@ -1,10 +1,7 @@
 #!/bin/bash
-set -e
+set -euo pipefail
 
 cd /opt/ludoteca
-
-echo "==> Pulling latest code..."
-git pull origin main
 
 echo "==> Installing dependencies..."
 CI=true pnpm install --frozen-lockfile
@@ -16,7 +13,6 @@ echo "==> Building and starting containers..."
 docker compose up -d --build
 
 echo "==> Running migrations..."
-sleep 5
 set -a
 source /opt/ludoteca/.env
 set +a
@@ -24,7 +20,15 @@ export DATABASE_URL="postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@localhos
 pnpm --filter api exec -- prisma migrate deploy --schema=prisma/schema.prisma
 
 echo "==> Healthcheck..."
-sleep 3
-curl -sf http://localhost:3000/api/health > /dev/null && echo "API is healthy!" || echo "WARNING: API healthcheck failed"
+for attempt in $(seq 1 15); do
+  if curl -sf http://localhost:3000/api/health > /dev/null; then
+    echo "API is healthy (attempt ${attempt})"
+    echo "==> Deploy complete!"
+    exit 0
+  fi
+  sleep 2
+done
 
-echo "==> Deploy complete!"
+echo "ERROR: API did not become healthy in 30s" >&2
+docker compose logs api --tail 30 >&2
+exit 1
