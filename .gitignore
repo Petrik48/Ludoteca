@@ -11,9 +11,13 @@ node_modules
 dist
 dist-ssr
 *.local
+
+# Env files (secrets)
 .env
 .env.*
 !.env.example
+
+# TypeScript incremental build cache
 *.tsbuildinfo
 
 # Editor directories and files

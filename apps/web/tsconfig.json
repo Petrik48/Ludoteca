@@ -10,6 +10,5 @@
     }
   },
   "include": ["src"],
-  "references": [{ "path": "./tsconfig.node.json" }],
-  "outDir": "./node_modules/.tmp/tsconfig.node"
+  "references": [{ "path": "./tsconfig.node.json" }]
 }
