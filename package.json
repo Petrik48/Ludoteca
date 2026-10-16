@@ -48,5 +48,6 @@
       "prisma",
       "unrs-resolver"
     ]
-  }
+  },
+  "packageManager": "pnpm@11.1.2"
 }
