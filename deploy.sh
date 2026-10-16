@@ -7,7 +7,7 @@ echo "==> Pulling latest code..."
 git pull origin main
 
 echo "==> Installing dependencies..."
-pnpm install --frozen-lockfile
+CI=true pnpm install --frozen-lockfile
 
 echo "==> Building frontend..."
 pnpm --filter web build
