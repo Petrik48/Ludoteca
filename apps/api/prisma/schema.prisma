@@ -15,10 +15,25 @@ enum GameType {
 
 // --- MODELS ---
 model Game {
-  id        String  @id @default(uuid())
+  id        String   @id @default(uuid())
   name      String
   type      GameType
   bggId     Int?
   createdAt DateTime @default(now()) @db.Timestamptz(3)
   updatedAt DateTime @updatedAt @db.Timestamptz(3)
+
+  plays Play[]
+}
+
+model Play {
+  id        String   @id @default(uuid())
+  gameId    String
+  playedAt  DateTime @db.Date
+  note      String?
+  createdAt DateTime @default(now()) @db.Timestamptz(3)
+  updatedAt DateTime @updatedAt @db.Timestamptz(3)
+
+  game Game @relation(fields: [gameId], references: [id], onDelete: Restrict)
+
+  @@index([gameId])
 }
