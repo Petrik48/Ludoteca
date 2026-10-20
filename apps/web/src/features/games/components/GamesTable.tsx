@@ -1,6 +1,6 @@
 import { MoreVertical, Pencil, Trash } from 'lucide-react';
 
-import { Game } from '../types';
+import { GameDto } from '../types';
 import {
   Table,
   TableBody,
@@ -14,12 +14,12 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@ludoteca/ui-kit';
-import { GameTypeBadge } from '@/features/games/components/GameTypeBadge.tsx';
+import { GameTypeBadge } from './GameTypeBadge.tsx';
 
 interface GamesTableProps {
-  games: Game[];
-  onEdit: (game: Game) => void;
-  onDelete: (game: Game) => void;
+  games: GameDto[];
+  onEdit: (game: GameDto) => void;
+  onDelete: (game: GameDto) => void;
 }
 
 export function GamesTable({ games, onEdit, onDelete }: GamesTableProps) {
