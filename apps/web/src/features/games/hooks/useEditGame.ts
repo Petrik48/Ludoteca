@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { updateGame } from '@/features/games/api.ts';
+import { updateGame } from '../api.ts';
 
 export function useEditGame() {
   const queryClient = useQueryClient();

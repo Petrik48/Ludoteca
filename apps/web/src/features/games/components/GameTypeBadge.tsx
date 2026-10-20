@@ -1,5 +1,5 @@
 import { cn } from '@ludoteca/ui-kit';
-import { GameType, gameTypeConfig } from '@/features/games/types.ts';
+import { GameType, gameTypeConfig } from '../types.ts';
 
 interface GameTypeBadgeProps {
   gameType: GameType;

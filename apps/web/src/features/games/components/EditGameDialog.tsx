@@ -1,12 +1,12 @@
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@ludoteca/ui-kit';
 import { GameForm } from '../components/GameForm.tsx';
 import { useEditGame } from '../hooks/useEditGame.ts';
-import { Game } from '../types.ts';
+import { GameDto } from '../types';
 
 interface EditGameDialogProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
-  game: Game;
+  game: GameDto;
 }
 
 export function EditGameDialog({ open, onOpenChange, game }: EditGameDialogProps) {

@@ -1,26 +1,26 @@
 import { useState } from 'react';
 import { Plus } from 'lucide-react';
 import { Button, ToggleGroupItem, ToggleGroup } from '@ludoteca/ui-kit';
+import { GameDto } from '../types';
 import { GamesTable } from '../components/GamesTable';
 import { useGames } from '../hooks/useGames';
 import { EmptyGames } from '../components/EmptyGames';
 import { AddGameDialog } from '../components/AddGameDialog.tsx';
 import { EditGameDialog } from '../components/EditGameDialog.tsx';
 import { DeleteGameConfirm } from '../components/DeleteGameConfirm.tsx';
-import { Game } from '../types.ts';
 
 export default function GamesLibraryPage() {
   const { data: games, isLoading, error } = useGames();
 
   const [isCreateOpen, setIsCreateOpen] = useState(false);
-  const [editingGame, setEditingGame] = useState<Game | null>(null);
-  const [deletingGame, setDeleteGame] = useState<Game | null>(null);
+  const [editingGame, setEditingGame] = useState<GameDto | null>(null);
+  const [deletingGame, setDeleteGame] = useState<GameDto | null>(null);
 
-  const handleEdit = (game: Game) => {
+  const handleEdit = (game: GameDto) => {
     setEditingGame(game);
   };
 
-  const handleDelete = (game: Game) => {
+  const handleDelete = (game: GameDto) => {
     setDeleteGame(game);
   };
 

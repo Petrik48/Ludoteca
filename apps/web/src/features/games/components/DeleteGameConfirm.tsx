@@ -8,26 +8,33 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from '@ludoteca/ui-kit';
-import { Game } from '../types.ts';
+import { GameDto } from '../types';
 import { useDeleteGame } from '../hooks/useDeleteGame.ts';
 
 interface DeleteGameConfirmProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
-  game: Game;
+  game: GameDto;
 }
 
 export function DeleteGameConfirm({ open, onOpenChange, game }: DeleteGameConfirmProps) {
-  const { mutate, isPending } = useDeleteGame();
+  const { mutate, isPending, error, reset } = useDeleteGame();
 
   return (
-    <AlertDialog open={open} onOpenChange={onOpenChange}>
+    <AlertDialog
+      open={open}
+      onOpenChange={(value) => {
+        if (!value) reset();
+        onOpenChange(value);
+      }}
+    >
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle>Delete game?</AlertDialogTitle>
           <AlertDialogDescription>
             Are you sure you want to delete {game.name}? This cannot be undone.
           </AlertDialogDescription>
+          {error && <p className="text-sm text-destructive">{error.message}</p>}
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel disabled={isPending}>
