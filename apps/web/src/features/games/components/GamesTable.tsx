@@ -1,6 +1,5 @@
+import { Link } from 'react-router-dom';
 import { MoreVertical, Pencil, Trash } from 'lucide-react';
-
-import { GameDto } from '../types';
 import {
   Table,
   TableBody,
@@ -14,7 +13,9 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@ludoteca/ui-kit';
-import { GameTypeBadge } from './GameTypeBadge.tsx';
+import { GameTypeBadge } from '@/shared/components';
+import { GameDto, gameTypeConfig } from '@/shared/types';
+import { formatDate } from '@/shared/utils';
 
 interface GamesTableProps {
   games: GameDto[];
@@ -36,14 +37,27 @@ export function GamesTable({ games, onEdit, onDelete }: GamesTableProps) {
       <TableBody>
         {games.map((game) => (
           <TableRow key={`${game.name}_${game.createdAt}`}>
-            <TableCell>{game.name}</TableCell>
             <TableCell>
-              <GameTypeBadge gameType={game.type} />
+              <Link to={`/games/${game.id}`} className="text-primary hover:text-primary-hover">
+                {game.name}
+              </Link>
             </TableCell>
-            <TableCell>{game.createdAt}</TableCell>
+            <TableCell>
+              <GameTypeBadge
+                variant={gameTypeConfig[game.type].className}
+                label={gameTypeConfig[game.type].label}
+              />
+            </TableCell>
+            <TableCell>{formatDate(game.createdAt)}</TableCell>
             <TableCell className="w-[100px] text-muted-foreground">
               <DropdownMenu>
-                <DropdownMenuTrigger render={<MoreVertical />}>Open</DropdownMenuTrigger>
+                <DropdownMenuTrigger
+                  render={
+                    <button aria-label="Game actions">
+                      <MoreVertical />
+                    </button>
+                  }
+                />
                 <DropdownMenuContent>
                   <DropdownMenuGroup>
                     <DropdownMenuItem

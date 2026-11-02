@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Plus } from 'lucide-react';
 import { Button, ToggleGroupItem, ToggleGroup } from '@ludoteca/ui-kit';
-import { GameDto } from '../types';
+import { GameDto } from '@/shared/types';
 import { GamesTable } from '../components/GamesTable';
 import { useGames } from '../hooks/useGames';
 import { EmptyGames } from '../components/EmptyGames';
@@ -24,11 +24,11 @@ export default function GamesLibraryPage() {
     setDeleteGame(game);
   };
 
-  if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>Error loading games</div>;
+  if (isLoading) return <div role="status">Loading...</div>;
+  if (error) return <div role="alert">Error loading games</div>;
 
   return (
-    <div className="flex flex-col gap-8 w-[960px] mx-auto">
+    <div className="flex flex-col gap-8 w-full max-w-[960px] mx-auto">
       <div className="flex justify-between items-center">
         <div className="flex items-center gap-3">
           <h1 className="text-2xl font-semibold text-foreground">Ludoteca</h1>

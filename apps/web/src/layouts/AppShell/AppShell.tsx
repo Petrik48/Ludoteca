@@ -3,9 +3,9 @@ import { Outlet } from 'react-router-dom';
 
 export function AppShell() {
   return (
-    <div className="bg-secondary py-12 px-6 min-h-screen">
-      <main>
-        <Suspense fallback={<div>Loading...</div>}>
+    <div className="flex flex-col bg-secondary py-12 px-6 min-h-screen">
+      <main className="flex-1 flex flex-col">
+        <Suspense fallback={<div role="status">Loading...</div>}>
           <Outlet />
         </Suspense>
       </main>

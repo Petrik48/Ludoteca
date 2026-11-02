@@ -1,47 +1,22 @@
-import { GameDto } from './types';
+import { GameDto } from '@/shared/types';
 import { CreateGameFormData } from './schemas.ts';
+import { request } from '@/shared/api';
 
-const API_BASE = '/api';
+export const fetchGames = () => request<GameDto[]>('/games');
 
-export async function fetchGames(): Promise<GameDto[]> {
-  const response = await fetch(`${API_BASE}/games`);
-  if (!response.ok) throw new Error('Failed to fetch games');
-  return response.json();
-}
-
-export async function createGame(data: CreateGameFormData): Promise<GameDto> {
-  const response = await fetch(`${API_BASE}/games`, {
+export const createGame = (data: CreateGameFormData) =>
+  request<GameDto>('/games', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data),
   });
-  if (!response.ok) throw new Error('Failed to create game');
-  return response.json();
-}
 
-export async function updateGame(params: {
-  id: string;
-  data: CreateGameFormData;
-}): Promise<GameDto> {
-  const { id, data } = params;
-  const response = await fetch(`${API_BASE}/games/${id}`, {
+export const updateGame = ({ id, data }: { id: string; data: CreateGameFormData }) =>
+  request<GameDto>(`/games/${id}`, {
     method: 'PATCH',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data),
   });
-  if (!response.ok) throw new Error('Failed to update game');
-  return response.json();
-}
 
-export async function deleteGame(params: { id: string }): Promise<void> {
-  const { id } = params;
-  const response = await fetch(`${API_BASE}/games/${id}`, {
-    method: 'DELETE',
-    headers: { 'Content-Type': 'application/json' },
-  });
-  if (response.status === 409) {
-    const body = await response.json().catch(() => null);
-    throw new Error(body?.message ?? 'This game has logged plays and cannot be deleted.');
-  }
-  if (!response.ok) throw new Error('Failed to delete game');
-}
+export const deleteGame = ({ id }: { id: string }) =>
+  request<void>(`/games/${id}`, { method: 'DELETE' });
