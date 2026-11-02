@@ -1,7 +1,7 @@
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@ludoteca/ui-kit';
 import { GameForm } from '../components/GameForm.tsx';
 import { useEditGame } from '../hooks/useEditGame.ts';
-import { GameDto } from '../types';
+import { GameDto } from '@/shared/types';
 
 interface EditGameDialogProps {
   open: boolean;
